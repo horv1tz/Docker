@@ -1,0 +1,21 @@
+version: '3.3'
+
+services:
+  code-server:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: code-server
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - PASSWORD=password1 #optional
+      - HASHED_PASSWORD= #optional
+      - SUDO_PASSWORD=password2 #optional
+      - SUDO_PASSWORD_HASH= #optional
+      - PROXY_DOMAIN=code-server.my.domain #optional
+      - DEFAULT_WORKSPACE=/config/workspace #optional
+    volumes:
+      - /home/horvitz/Projects/Python/ci-neero:/config
+    ports:
+      - 8443:8443
+    restart: unless-stopped

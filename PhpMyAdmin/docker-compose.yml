@@ -1,0 +1,27 @@
+version: '3.3'
+
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - ./db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: somephpmyadmin
+      MYSQL_DATABASE: phpmyadmin
+      MYSQL_USER: horvitz
+      MYSQL_PASSWORD: Polina1l
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - "9898:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: '1'
+    depends_on:
+      - db
+
+

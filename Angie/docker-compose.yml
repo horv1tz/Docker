@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  nginx:
+    image: docker.angie.software/angie:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./site-configs:/etc/nginx/
+      - ./www:/var/www/html
+    restart: always
